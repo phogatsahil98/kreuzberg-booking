@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kreuzberg Record Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="store-name">KREUZBERG RECORDS</div>
+    <div class="local-time" id="berlin-time">--:--</div>
+    <div class="header-icons">
+      <button class="icon-btn"><i class="fa fa-universal-access"></i></button>
+      <button class="icon-btn"><i class="fa fa-cog"></i></button>
+      <button class="icon-btn"><i class="fa fa-shopping-cart"></i></button>
+    </div>
+  </header>
+
+<!-- EXPERIENCE SECTION -->
+<section class="experience">
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="assets/kreuzberg-vibe.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay">
+      <h2>KREUZBERG RECORDS</h2>
+      <p>Where Underground Sound Meets Modern Soul</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE EVENTS & LINEUP SECTION -->
+<section class="events">
+  <h2>Live Events & Lineup</h2>
+  <div id="event-list" class="event-list"></div>
+</section>
+
+
+<!-- GENRE STORE -->
+<section class="record-store">
+  <h2>Explore Our Records</h2>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <label for="genre-filter">Filter by Genre:</label>
+    <select id="genre-filter">
+      <option value="all">All</option>
+      <option value="Techno">Techno</option>
+      <option value="Calm">Calm</option>
+      <option value="Rock">Rock</option>
+      <option value="Peace">Peace</option>
+    </select>
+  </div>
+
+  <!-- Dynamic Record List -->
+  <div id="record-list" class="record-list"></div>
+</section>
+
+<section class="top-sold">
+  <h2>Top 5 Sold Tapes</h2>
+  <div id="top-tapes-list" class="tape-list">
+    <div class="tape-card">
+      <img src="assets/tapes/tape1.webp" alt="Tape 1">
+      <div class="tape-info">
+        <h3>Berlin Underground Vol. 1</h3>
+        <p class="genre">Techno</p>
+        <p class="price">€24</p>
+      </div>
+      <button class="play-btn" data-src="assets/audio/tape1.mp3">▶️</button>
+    </div>
+
+    <div class="tape-card">
+      <img src="assets/tapes/tape2.webp" alt="Tape 2">
+      <div class="tape-info">
+        <h3>Kreuzberg Beats</h3>
+        <p class="genre">House</p>
+        <p class="price">€22</p>
+      </div>
+      <button class="play-btn" data-src="assets/audio/tape2.mp3">▶️</button>
+    </div>
+
+    <div class="tape-card">
+      <img src="assets/tapes/tape3.webp" alt="Tape 3">
+      <div class="tape-info">
+        <h3>Vinyl Nights: Vol. 3</h3>
+        <p class="genre">Lo-Fi</p>
+        <p class="price">€20</p>
+      </div>
+      <button class="play-btn" data-src="assets/audio/tape3.mp3">▶️</button>
+    </div>
+
+    <div class="tape-card">
+      <img src="assets/tapes/tape4.webp" alt="Tape 4">
+      <div class="tape-info">
+        <h3>Berlin Acid Lines</h3>
+        <p class="genre">Acid</p>
+        <p class="price">€26</p>
+      </div>
+      <button class="play-btn" data-src="assets/audio/tape4.mp3">▶️</button>
+    </div>
+
+    <div class="tape-card">
+      <img src="assets/tapes/tape5.webp" alt="Tape 5">
+      <div class="tape-info">
+        <h3>Minimal Mindset</h3>
+        <p class="genre">Minimal</p>
+        <p class="price">€19</p>
+      </div>
+      <button class="play-btn" data-src="assets/audio/tape5.mp3">▶️</button>
+    </div>
+  </div>
+</section>
+
+<!-- MINI AUDIO PLAYER (With Visualization) -->
+<div class="audio-player" id="audio-player">
+  <div class="player-info">
+    <span id="track-title">No track playing</span>
+  </div>
+
+  <div class="visualizer" id="visualizer">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="player-controls">
+    <button id="play-toggle">⏸️</button>
+    <input type="range" id="progress-bar" value="0" max="100">
+  </div>
+</div>
+
+  <!-- ABOUT / HISTORY -->
+  <section class="about-store">
+    <h2>Our Story</h2>
+    <p>
+      Born in the heart of Kreuzberg, our record shop began as a basement jam in 2012.
+      Today, it stands as a cultural hub blending vintage vinyl with modern rhythm. 
+      From classic tapes to underground DJ sets — we live and breathe Berlin's electronic soul.
+    </p>
+  </section>
+
+<!-- CONTACT SECTION -->
+<section class="contact">
+  <h2>Contact Us</h2>
+
+  <div class="contact-wrapper">
+    <!-- LEFT SIDE: CONTACT FORM -->
+    <form 
+      id="contact-form"
+      name="contact-form"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="contact-form">
+      <p class="hidden">
+        <label>Don't fill this out: <input name="bot-field"></label>
+      </p>
+
+      <input type="text" id="contact-name" name="contactName" placeholder="Your Name" required>
+      <input type="email" id="contact-email" name="contactEmail" placeholder="Your Email" required>
+      <textarea id="contact-message" name="contactMessage" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <!-- RIGHT SIDE: EMBEDDED MAP -->
+    <div class="map-container">
+      <div class="map-overlay">
+        <p>📍 Kreuzberg Record Store</p>
+      </div>
+
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.778889207364!2d13.407032015808776!3d52.49632697980795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84f99bb4d14a9%3A0x1db69b5dc7cbf7f4!2sKreuzberg%2C%20Berlin%2C%20Germany!5e0!3m2!1sen!2sin!4v1709987639995!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING MODAL -->
+<div id="booking-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    <h2>Book Your Spot</h2>
+
+    <form id="booking-form" name="kreuzberg-booking" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="kreuzberg-booking">
+      <input type="text" id="event-name" name="eventName" readonly>
+      <input type="text" id="artist-name" name="artistName" readonly>
+      <input type="text" id="event-date" name="eventDate" readonly>
+      <input type="text" id="event-time" name="eventTime" readonly>
+
+      <input type="text" id="user-name" name="userName" placeholder="Your Name" required>
+      <input type="email" id="user-email" name="userEmail" placeholder="Your Email" required>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+</div>
+
+<!-- Hidden Netlify Registration Form -->
+<form name="kreuzberg-booking" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="eventName">
+  <input type="text" name="artistName">
+  <input type="text" name="eventDate">
+  <input type="text" name="eventTime">
+  <input type="text" name="userName">
+  <input type="email" name="userEmail">
+</form>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <p>© 2025 | Designed & Developed by Sahil Phogat</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
