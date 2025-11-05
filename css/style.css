@@ -7,10 +7,11 @@
 }
 
 body {
-  background-color: #0e0e0e;
-  color: #e0e0e0;
-  line-height: 1.6;
-  overflow-x: hidden;
+  background: radial-gradient(circle at top left, #111 0%, #000 100%);
+  color: #eee;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  scroll-behavior: smooth;
 }
 
 h2 {
@@ -20,6 +21,18 @@ h2 {
   border-left: 4px solid #ff3b3b;
   padding-left: 10px;
   color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(0,0,0,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 /* ========== HEADER ========== */
@@ -259,6 +272,17 @@ h2 {
 .record-card:hover {
   transform: translateY(-5px);
   border-color: #ff3b3b;
+}
+
+.record-card, .event-card {
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.record-card:hover, .event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
 .record-card h3 {
@@ -680,4 +704,14 @@ section.visible {
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
