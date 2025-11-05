@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Berlin Beats Vol. 1",
+    "genre": "Techno",
+    "price": 29,
+    "image": "assets/records/record1.jpg"
+  },
+  {
+    "title": "Midnight Soul",
+    "genre": "Calm",
+    "price": 25,
+    "image": "assets/records/record2.jpg"
+  },
+  {
+    "title": "Rebel Frequencies",
+    "genre": "Rock",
+    "price": 22,
+    "image": "assets/records/record3.jpg"
+  },
+  {
+    "title": "Noir Pulse",
+    "genre": "Peace",
+    "price": 24,
+    "image": "assets/records/record4.jpg"
+  },
+  {
+    "title": "Urban Chill Vibes",
+    "genre": "Calm",
+    "price": 26,
+    "image": "assets/records/record5.webp"
+  }
+]

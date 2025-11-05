@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Berlin Underground Night",
+    "artist": "DJ Nova",
+    "date": "10 Nov 2025",
+    "time": "9:00 PM - 2:00 AM",
+    "image": "assets/events/event1.jpg"
+  },
+  {
+    "title": "Midnight Frequencies",
+    "artist": "DJ Flux",
+    "date": "16 Nov 2025",
+    "time": "10:00 PM - 3:00 AM",
+    "image": "assets/events/event2.jpg"
+  },
+  {
+    "title": "Echoes of Calm",
+    "artist": "DJ Luma",
+    "date": "21 Nov 2025",
+    "time": "8:00 PM - 12:00 AM",
+    "image": "assets/events/event3.jpg"
+  }
+]
