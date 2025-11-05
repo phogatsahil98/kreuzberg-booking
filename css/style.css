@@ -490,19 +490,101 @@ header {
   transition: height 0.1s ease;
 }
 
-/* ========== ABOUT SECTION ========== */
-.about-store {
-  padding: 50px 10%;
-  background: #151515;
-  border-top: 2px solid #2e2e2e;
-  border-bottom: 2px solid #2e2e2e;
+/* About and History Section */
+.history-section {
+  position: relative;
+  color: #fff;
+  padding: 120px 0;
+  overflow: hidden;
+  background: #0b0b0b;
 }
 
-.about-store p {
-  color: #cfcfcf;
-  max-width: 800px;
-  margin-top: 10px;
+.history-bg {
+  position: absolute;
+  inset: 0;
+  background: url("assets/images/berlin-street-dark.jpg") center/cover no-repeat;
+  opacity: 0.25;
+  filter: blur(6px);
+  z-index: 0;
 }
+
+.history-content {
+  position: relative;
+  z-index: 2;
+  width: 80%;
+  margin: auto;
+  text-align: left;
+}
+
+.history-content h2 {
+  color: #ff1e1e;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.intro-text {
+  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 70px;
+  max-width: 800px;
+}
+
+.timeline {
+  border-left: 2px solid #ff1e1e;
+  margin-left: 40px;
+  padding-left: 30px;
+}
+
+.year-block {
+  margin-bottom: 60px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.year-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.year-block::before {
+  content: "";
+  position: absolute;
+  left: -43px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background: #ff1e1e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff1e1e;
+}
+
+.year-block h3 {
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.year-block p {
+  color: #aaa;
+  line-height: 1.6;
+  font-size: 1rem;
+  max-width: 600px;
+}
+
+.final-quote {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #ff1e1e;
+  margin-top: 100px;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
 
 /* ========== CONTACT FORM ========== */
 /* CONTACT SECTION */
