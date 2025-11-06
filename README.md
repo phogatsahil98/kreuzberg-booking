@@ -4,21 +4,15 @@
 </p>
 
 <h1 align="center">🎧 Kreuzberg Records</h1>
+
 <p align="center">
   <em>Raw. Rhythmic. Refined. Electric.</em><br>
   A concept record store web app inspired by Berlin’s underground sound and design culture.
 </p>
 
-
-<h1 align="center">🎧 Kreuzberg Records</h1>
 <p align="center">
-  <em>Born from beats. Built on rebellion.</em><br>
-  A concept record store web app inspired by the underground electronic culture of Berlin’s Kreuzberg district.
-</p>
-
-<p align="center">
-  <a href="https://app.netlify.com/sites/kreuzberg-records"><img src="https://img.shields.io/badge/Live-Demo-%23FF1E1E?style=for-the-badge&logo=netlify&logoColor=white"></a>
-  <a href="https://github.com/SahilPhogat"><img src="https://img.shields.io/badge/Author-Sahil%20Phogat-%23FF1E1E?style=for-the-badge&logo=github"></a>
+  <a href="https://kreuzberg-booking.netlify.app/"><img src="https://img.shields.io/badge/Live-Demo-%23FF1E1E?style=for-the-badge&logo=netlify&logoColor=white"></a>
+  <a href="https://github.com/phogatsahil98"><img src="https://img.shields.io/badge/Author-Sahil%20Phogat-%23FF1E1E?style=for-the-badge&logo=github"></a>
   <img src="https://img.shields.io/badge/Built%20With-HTML%20%7C%20CSS%20%7C%20JS-%230B0B0B?style=for-the-badge">
 </p>
 
@@ -132,8 +126,9 @@ cd kreuzberg-records
 npx live-server
 ```
 
-**Final Note : **
-“I’m Making Changes — Join Me to See What’s Next.”
+**Final Note :** 
+“I’m Making Changes — Join Me to See What’s Next.”</b>
 
 <p align="center"> <b>© 2025 Kreuzberg Records | Designed & Developed by Sahil Phogat</b> </p> 
+
 
