@@ -73,7 +73,7 @@ kreuzberg-records/
 ## 🎧 Live Preview  
 
 🚀 **Experience it here:**  
-👉 [**Kreuzberg Records — Live Demo**](https://kreuzberg-records.netlify.app)  
+👉 [**Kreuzberg Records — Live Demo**](https://kreuzberg-booking.netlify.app/)  
 
 > _Best viewed on desktop (Chrome / Edge). Mobile version available with adaptive design._
 
@@ -130,5 +130,6 @@ npx live-server
 “I’m Making Changes — Join Me to See What’s Next.”</b>
 
 <p align="center"> <b>© 2025 Kreuzberg Records | Designed & Developed by Sahil Phogat</b> </p> 
+
 
 
