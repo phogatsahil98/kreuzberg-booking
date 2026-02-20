@@ -6,12 +6,13 @@ function updateBerlinTime() {
     timeZone: "Europe/Berlin",
     hour: "2-digit",
     minute: "2-digit",
+    second: "2-digit",
   });
   const clock = document.getElementById("berlin-time");
   if (clock) clock.textContent = berlinTime;
 }
 updateBerlinTime();
-setInterval(updateBerlinTime, 60000);
+setInterval(updateBerlinTime, 1000);
 
 // ======================================================
 // 2️⃣ MAIN APP LOGIC (safe inside DOMContentLoaded)
