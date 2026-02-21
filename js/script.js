@@ -193,16 +193,30 @@ const playButtons = document.querySelectorAll(".play-btn");
 const playToggle = document.getElementById("play-toggle");
 const progressBar = document.getElementById("progress-bar");
 const trackTitle = document.getElementById("track-title");
+const closePlayer = document.getElementById("close-player");
 
 let currentAudio = null;
 let currentTrack = null;
+let currentButton = null;
+
+const playIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>`;
+const pauseIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+
+function setButtonState(btn, isPlaying) {
+  if (!btn) return;
+  // SVGs are static constants — no user input involved, innerHTML is safe here
+  btn.innerHTML = isPlaying ? `${pauseIconSVG} Pause` : `${playIconSVG} Play`;
+}
 
 // Load and play new track
-function loadTrack(src, title) {
+function loadTrack(src, title, btn) {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
   }
+  // Reset the previous button only when switching to a different track
+  if (currentButton && currentButton !== btn) setButtonState(currentButton, false);
+  currentButton = btn || null;
   currentAudio = new Audio(src);
   currentTrack = src;
   trackTitle.textContent = title;
@@ -212,6 +226,7 @@ function loadTrack(src, title) {
   currentAudio.addEventListener("ended", () => {
     playToggle.textContent = "▶️";
     progressBar.value = 0;
+    setButtonState(currentButton, false);
   });
 
   currentAudio.play().catch(err => {
@@ -220,6 +235,7 @@ function loadTrack(src, title) {
   });
 
   playToggle.textContent = "⏸️";
+  setButtonState(currentButton, true);
   setupVisualizer();     // <- ensures bars animate
 }
 
@@ -232,8 +248,32 @@ function updateProgress() {
 // Toggle play/pause
 function togglePlayPause() {
   if (!currentAudio) return;
-  if (currentAudio.paused) { currentAudio.play(); playToggle.textContent = "⏸️"; }
-  else { currentAudio.pause(); playToggle.textContent = "▶️"; }
+  if (currentAudio.paused) {
+    currentAudio.play();
+    playToggle.textContent = "⏸️";
+    setButtonState(currentButton, true);
+  } else {
+    currentAudio.pause();
+    playToggle.textContent = "▶️";
+    setButtonState(currentButton, false);
+  }
+}
+
+// Close player
+if (closePlayer) {
+  closePlayer.addEventListener("click", () => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    setButtonState(currentButton, false);
+    if (audioPlayer) audioPlayer.style.display = "none";
+    currentAudio = null;
+    currentTrack = null;
+    currentButton = null;
+    playToggle.textContent = "▶️";
+    progressBar.value = 0;
+  });
 }
 
 // Button bindings
@@ -242,7 +282,7 @@ playButtons.forEach(btn => {
     const src = btn.dataset.src;
     const title = btn.parentElement.querySelector("h3")?.textContent || "Unknown Track";
     if (!src) { alert("Audio source missing."); return; }
-    if (src !== currentTrack) loadTrack(src, title);
+    if (src !== currentTrack) loadTrack(src, title, btn);
     else togglePlayPause();
   });
 });

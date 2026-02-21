@@ -447,6 +447,24 @@ header {
   display: none; /* hidden by default */
 }
 
+#close-player {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #aaa;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 2px 6px;
+}
+
+#close-player:hover {
+  color: #ff3b3b;
+}
+
 .audio-player.playing {
   box-shadow: 0 0 20px rgba(255, 59, 59, 0.4);
   transition: box-shadow 0.3s ease;
