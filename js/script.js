@@ -193,16 +193,33 @@ const playButtons = document.querySelectorAll(".play-btn");
 const playToggle = document.getElementById("play-toggle");
 const progressBar = document.getElementById("progress-bar");
 const trackTitle = document.getElementById("track-title");
+const closePlayer = document.getElementById("close-player");
 
 let currentAudio = null;
 let currentTrack = null;
+let activePlayBtn = null;
+
+// Toggle icon visibility on a button: showPause=true shows pause, false shows play
+function setButtonIcon(btn, showPause) {
+  const playIcon = btn.querySelector(".icon-play");
+  const pauseIcon = btn.querySelector(".icon-pause");
+  if (playIcon) playIcon.style.display = showPause ? "none" : "";
+  if (pauseIcon) pauseIcon.style.display = showPause ? "" : "none";
+}
+
+// Reset all play buttons to show play icon
+function resetAllPlayBtns() {
+  playButtons.forEach(btn => setButtonIcon(btn, false));
+  activePlayBtn = null;
+}
 
 // Load and play new track
-function loadTrack(src, title) {
+function loadTrack(src, title, btn) {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
   }
+  resetAllPlayBtns();
   currentAudio = new Audio(src);
   currentTrack = src;
   trackTitle.textContent = title;
@@ -212,6 +229,7 @@ function loadTrack(src, title) {
   currentAudio.addEventListener("ended", () => {
     playToggle.textContent = "▶️";
     progressBar.value = 0;
+    resetAllPlayBtns();
   });
 
   currentAudio.play().catch(err => {
@@ -220,6 +238,7 @@ function loadTrack(src, title) {
   });
 
   playToggle.textContent = "⏸️";
+  if (btn) { setButtonIcon(btn, true); activePlayBtn = btn; }
   setupVisualizer();     // <- ensures bars animate
 }
 
@@ -232,8 +251,30 @@ function updateProgress() {
 // Toggle play/pause
 function togglePlayPause() {
   if (!currentAudio) return;
-  if (currentAudio.paused) { currentAudio.play(); playToggle.textContent = "⏸️"; }
-  else { currentAudio.pause(); playToggle.textContent = "▶️"; }
+  if (currentAudio.paused) {
+    currentAudio.play();
+    playToggle.textContent = "⏸️";
+    if (activePlayBtn) { setButtonIcon(activePlayBtn, true); }
+  } else {
+    currentAudio.pause();
+    playToggle.textContent = "▶️";
+    if (activePlayBtn) { setButtonIcon(activePlayBtn, false); }
+  }
+}
+
+// Close player
+function closeAudioPlayer() {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+  }
+  currentTrack = null;
+  resetAllPlayBtns();
+  if (audioPlayer) audioPlayer.style.display = "none";
+  if (trackTitle) trackTitle.textContent = "No track playing";
+  if (progressBar) progressBar.value = 0;
+  if (playToggle) playToggle.textContent = "▶️";
 }
 
 // Button bindings
@@ -242,12 +283,16 @@ playButtons.forEach(btn => {
     const src = btn.dataset.src;
     const title = btn.parentElement.querySelector("h3")?.textContent || "Unknown Track";
     if (!src) { alert("Audio source missing."); return; }
-    if (src !== currentTrack) loadTrack(src, title);
-    else togglePlayPause();
+    if (src !== currentTrack) {
+      loadTrack(src, title, btn);
+    } else {
+      togglePlayPause();
+    }
   });
 });
 
 if (playToggle) playToggle.addEventListener("click", togglePlayPause);
+if (closePlayer) closePlayer.addEventListener("click", closeAudioPlayer);
 if (progressBar) {
   progressBar.addEventListener("input", () => {
     if (currentAudio && currentAudio.duration)
