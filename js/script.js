@@ -199,26 +199,18 @@ let currentAudio = null;
 let currentTrack = null;
 let activePlayBtn = null;
 
+// Toggle icon visibility on a button: showPause=true shows pause, false shows play
+function setButtonIcon(btn, showPause) {
+  const playIcon = btn.querySelector(".icon-play");
+  const pauseIcon = btn.querySelector(".icon-pause");
+  if (playIcon) playIcon.style.display = showPause ? "none" : "";
+  if (pauseIcon) pauseIcon.style.display = showPause ? "" : "none";
+}
+
 // Reset all play buttons to show play icon
 function resetAllPlayBtns() {
-  playButtons.forEach(btn => {
-    btn.querySelector(".icon-play").style.display = "";
-    btn.querySelector(".icon-pause").style.display = "none";
-  });
+  playButtons.forEach(btn => setButtonIcon(btn, false));
   activePlayBtn = null;
-}
-
-// Set a specific button to pause state
-function setButtonPause(btn) {
-  btn.querySelector(".icon-play").style.display = "none";
-  btn.querySelector(".icon-pause").style.display = "";
-  activePlayBtn = btn;
-}
-
-// Set a specific button to play state
-function setButtonPlay(btn) {
-  btn.querySelector(".icon-play").style.display = "";
-  btn.querySelector(".icon-pause").style.display = "none";
 }
 
 // Load and play new track
@@ -246,7 +238,7 @@ function loadTrack(src, title, btn) {
   });
 
   playToggle.textContent = "⏸️";
-  if (btn) setButtonPause(btn);
+  if (btn) { setButtonIcon(btn, true); activePlayBtn = btn; }
   setupVisualizer();     // <- ensures bars animate
 }
 
@@ -262,11 +254,11 @@ function togglePlayPause() {
   if (currentAudio.paused) {
     currentAudio.play();
     playToggle.textContent = "⏸️";
-    if (activePlayBtn) setButtonPause(activePlayBtn);
+    if (activePlayBtn) { setButtonIcon(activePlayBtn, true); }
   } else {
     currentAudio.pause();
     playToggle.textContent = "▶️";
-    if (activePlayBtn) setButtonPlay(activePlayBtn);
+    if (activePlayBtn) { setButtonIcon(activePlayBtn, false); }
   }
 }
 
