@@ -390,24 +390,22 @@ header {
 .play-btn {
   background: #ff1e1e;
   border: none;
-  border-radius: 6px;
-  padding: 8px 16px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   color: #fff;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  justify-content: center;
   transition: background 0.2s ease, transform 0.2s ease;
   margin-left: 18px;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .play-btn:hover {
   background: #cc0000;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 /* Mobile tweak — keep neat alignment */
@@ -422,8 +420,8 @@ header {
     margin-right: 14px;
   }
   .play-btn {
-    font-size: 0.8rem;
-    padding: 6px 12px;
+    width: 36px;
+    height: 36px;
     margin-left: 10px;
   }
 }
@@ -479,6 +477,28 @@ header {
 #progress-bar {
   width: 150px;
   cursor: pointer;
+}
+
+#close-player {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+#close-player:hover {
+  background: #ff3b3b;
+  border-color: #ff3b3b;
 }
 
 /* AUDIO VISUALIZER */
